@@ -81,17 +81,6 @@ Class MYSQL_DB {
 			$query = mysql_query($SQL);
 		}
 		
-		//Statistical analysis of query time
-		$speed_endtime=explode(' ',microtime());
-		$totaltime=number_format((($speed_endtime[0]+$speed_endtime[1]-$speed_headtime)/1),6);
-		$speed_totaltime="TIME $totaltime second(s)\t$SQL\r\n";
-		if($totaltime>0.3){
-			//write_file(ROOT_PATH."/cache/MysqlTime.txt",$speed_totaltime,'a');
-			//then 3M,auto delete
-			if(filesize(ROOT_PATH."/cache/MysqlTime.txt")>1024*1024*3){
-				unlink(ROOT_PATH."/cache/MysqlTime.txt");
-			}
-		}
 		$this->connet_nums++;
 
 		if (!$query&&$showerr=='1')  $this->Err("DB ink err:$SQL<br>");
